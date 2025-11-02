@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semaj // Neon Dossier</title>
+  <meta name="description" content="Encrypted fragments tracking the movements of Semaj, the local cyberpunk terror." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Semaj</h1>
+    <p class="tagline">They call Semaj a terror. A phantom in chrome. This archive will chronicle sightings, impacts, and decoded transmissions. For now, the network waits.</p>
+    <nav>
+      <a href="#posts">Transmissions</a>
+      <a href="#about">About</a>
+      <a href="#add">Add Post</a>
+      <a href="https://example.com" target="_blank" rel="noopener">External Link</a>
+    </nav>
+  </header>
+  <main>
+    <section id="latest">
+      <h2 class="section-title">Latest Signals</h2>
+      <div id="posts" aria-live="polite"></div>
+    </section>
+    <section id="about">
+      <h2 class="section-title">About Semaj</h2>
+      <p>Rumors speak of a figure navigating the neon haze, disrupting corrupted nodes and leaving only glyph-coded tags behind. Whether vigilante or villain depends on whose megacorp ledger you read. This site will gather events as they unfold.</p>
+    </section>
+    <section id="add">
+      <h2 class="section-title">How to Add an Entry</h2>
+      <p>Posts are stored in <code>posts/posts.json</code>. Each entry is an object with keys: <code>title</code>, <code>date</code> (ISO), <code>author</code>, <code>tag</code>, <code>summary</code>, and optional <code>body</code> (HTML allowed, keep it minimal). See the README for details and an example.</p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; <span id="year"></span> Semaj Archive. Unauthorized replication triggers ICE countermeasures.</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
