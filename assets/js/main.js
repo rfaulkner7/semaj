@@ -13,7 +13,8 @@
     const html = posts.map(p => {
       const date = p.date ? new Date(p.date).toLocaleDateString() : 'Unknown Date';
       const img = p.image ? `<div class="image-wrap"><img class="post-image" src="${p.image}" alt="${(p.title||'post image').replace(/"/g,'')}"></div>` : '';
-      return `<article class="post">
+      const flynn = (p.author || '').toLowerCase() === 'flynn' ? ' flynn' : '';
+      return `<article class="post${flynn}">
         <h2>${p.title || 'Untitled Signal'}</h2>
         <div class="meta">${date} — ${p.author || 'Anon'} — <span class="tag">${p.tag || 'general'}</span></div>
         ${img}
