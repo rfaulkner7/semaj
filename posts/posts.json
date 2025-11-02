@@ -1,47 +1,56 @@
 [
-	{
-		"title": "Food Convoy Redirection",
-		"date": "2025-11-02T08:50:00Z",
-		"author": "Supply Broker Ansa",
-		"tag": "aid",
-		"summary": "Report of Semaj rerouting confiscated ration crates back to community kitchens.",
-		"body": "<p>Three marked cargo drones deviated off a locked vector tonight and settled into the courtyard of the Block 14 kitchen. Flight path audit shows a spoofed guidance packet—clean and untraceable—applied mid-air. A violet glyph pulsed on each crate until volunteers retrieved them. Locals cite the signature hue and precision: credit to Semaj.</p><p>The kitchens now have a week of buffer stock.</p>",
-		"image": null
-	},
-	{
-		"title": "Generator Roof Silhouette",
-		"date": "2025-11-01T04:40:00Z",
-		"author": "Tower Tech L7",
-		"tag": "legend",
-		"summary": "Brief outline of Semaj above the sector power relay during a systems spike.",
-		"body": "<p>During a voltage flutter at Relay Node 3, I went topside to inspect. Saw a silhouette—coat edges lit by neon runoff—standing still on the generator housing. Spike resolved in under 12 seconds. When I looked back, only a fading violet glyph remained. Maintenance logs show an attempted remote tap was nullified at the same timestamp. Crew consensus attribution: Semaj.</p>",
-		"image": null
-	},
-	{
-		"title": "My First Direct Encounter",
-		"date": "2025-10-29T02:30:00Z",
-		"author": "Flynn",
-		"tag": "encounter",
-		"summary": "Observed Semaj halting a thug intimidating kids near a sector playground.",
-		"body": "<p>Trailing a faint phosphor trace, I caught sight of Semaj beside the rusted playground fence. A grunt who'd been pacing and scaring the younger kids was intercepted. Semaj moved—two controlled motions—leaving the thug unable to continue the intimidation. The children were ushered away while Semaj verified the scene was clear. Then: gone. No chance to speak.</p>",
-		"image": null
-	},
-	{
-		"title": "Why This Archive Exists",
-		"date": "2025-10-24T19:20:00Z",
-		"author": "Flynn",
-		"tag": "origin",
-		"summary": "Launching this log to gather scattered whispers about the vigilante called Semaj.",
-		"body": "<p>I started digging for verifiable data—feeds, cams, syndicate chatter—on a rumored protector operating inside the slums. Almost nothing official. Only voices: shopkeepers, loaders, night-shift medics. They all used the same name: <strong>Semaj</strong>. They claim he grew up among them, saw the pressure systems the mafia installed, and chose a different vector—helping anyone willing to elevate themselves instead of submit.</p><p>This archive will collate sightings, impacts, and patterns so the narrative can't be buried.</p>",
-		"image": null
-	},
-	{
-		"title": "Echoed Tale in the Alleys",
-		"date": "2025-10-20T21:10:00Z",
-		"author": "Flynn",
-		"tag": "sighting",
-		"summary": "Second-hand account of Semaj intervening against a gang preying on families in the lower sectors.",
-		"body": "<p>Word rippled through the corridor markets tonight: a quiet figure stepped into a shakedown where a crew was extorting food rations. Witnesses say Semaj disabled six aggressors with swift precision, leaving them unable to continue their threats. No trophies. No speeches. Just a warning glyph etched in violet light before he vanished.</p><p>Families report their supplies were returned intact.</p>",
-		"image": null
-	}
+  {
+    "id": "mhic3e5i-llu2mm",
+    "title": "yes",
+    "date": "2025-11-02T23:20:10.157Z",
+    "author": "yes",
+    "tag": "yes",
+    "summary": "yes",
+    "body": "yes"
+  },
+  {
+    "title": "Food Convoy Redirection",
+    "date": "2025-11-02T08:50:00Z",
+    "author": "Supply Broker Ansa",
+    "tag": "aid",
+    "summary": "Report of Semaj rerouting confiscated ration crates back to community kitchens.",
+    "body": "<p>Three marked cargo drones deviated off a locked vector tonight and settled into the courtyard of the Block 14 kitchen. Flight path audit shows a spoofed guidance packet—clean and untraceable—applied mid-air. A violet glyph pulsed on each crate until volunteers retrieved them. Locals cite the signature hue and precision: credit to Semaj.</p><p>The kitchens now have a week of buffer stock.</p>",
+    "image": null
+  },
+  {
+    "title": "Generator Roof Silhouette",
+    "date": "2025-11-01T04:40:00Z",
+    "author": "Tower Tech L7",
+    "tag": "legend",
+    "summary": "Brief outline of Semaj above the sector power relay during a systems spike.",
+    "body": "<p>During a voltage flutter at Relay Node 3, I went topside to inspect. Saw a silhouette—coat edges lit by neon runoff—standing still on the generator housing. Spike resolved in under 12 seconds. When I looked back, only a fading violet glyph remained. Maintenance logs show an attempted remote tap was nullified at the same timestamp. Crew consensus attribution: Semaj.</p>",
+    "image": null
+  },
+  {
+    "title": "My First Direct Encounter",
+    "date": "2025-10-29T02:30:00Z",
+    "author": "Flynn",
+    "tag": "encounter",
+    "summary": "Observed Semaj halting a thug intimidating kids near a sector playground.",
+    "body": "<p>Trailing a faint phosphor trace, I caught sight of Semaj beside the rusted playground fence. A grunt who'd been pacing and scaring the younger kids was intercepted. Semaj moved—two controlled motions—leaving the thug unable to continue the intimidation. The children were ushered away while Semaj verified the scene was clear. Then: gone. No chance to speak.</p>",
+    "image": null
+  },
+  {
+    "title": "Why This Archive Exists",
+    "date": "2025-10-24T19:20:00Z",
+    "author": "Flynn",
+    "tag": "origin",
+    "summary": "Launching this log to gather scattered whispers about the vigilante called Semaj.",
+    "body": "<p>I started digging for verifiable data—feeds, cams, syndicate chatter—on a rumored protector operating inside the slums. Almost nothing official. Only voices: shopkeepers, loaders, night-shift medics. They all used the same name: <strong>Semaj</strong>. They claim he grew up among them, saw the pressure systems the mafia installed, and chose a different vector—helping anyone willing to elevate themselves instead of submit.</p><p>This archive will collate sightings, impacts, and patterns so the narrative can't be buried.</p>",
+    "image": null
+  },
+  {
+    "title": "Echoed Tale in the Alleys",
+    "date": "2025-10-20T21:10:00Z",
+    "author": "Flynn",
+    "tag": "sighting",
+    "summary": "Second-hand account of Semaj intervening against a gang preying on families in the lower sectors.",
+    "body": "<p>Word rippled through the corridor markets tonight: a quiet figure stepped into a shakedown where a crew was extorting food rations. Witnesses say Semaj disabled six aggressors with swift precision, leaving them unable to continue their threats. No trophies. No speeches. Just a warning glyph etched in violet light before he vanished.</p><p>Families report their supplies were returned intact.</p>",
+    "image": null
+  }
 ]
