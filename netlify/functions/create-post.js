@@ -3,7 +3,7 @@
 // Requires environment variables: GITHUB_TOKEN, GITHUB_REPO (e.g. rfaulkner7/semaj)
 // Caution: This is a simple approach; consider validation/rate limiting.
 
-const fetch = require('node-fetch');
+// Using built-in fetch (Node 18+ on Netlify). No external dependency needed.
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
