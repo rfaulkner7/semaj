@@ -94,6 +94,8 @@ The form on the page uses a Netlify Function (`create-post`) to append a new pos
 2. Add `GITHUB_TOKEN` with a GitHub Personal Access Token that has `repo` scope (can be classic token, limited to this repo).
 3. Add `GITHUB_REPO` set to `rfaulkner7/semaj` (owner/repo format).
 4. Redeploy the site (Netlify will build & include the function).
+ 5. (Optional) Set `ALLOW_PUBLIC_POSTS=true` to permit any visitor to submit posts.
+ 6. (Optional) Set `POST_SHARED_SECRET=<value>` and add a hidden input `name="secret"` to require a shared code.
 
 ### How It Works
 - User submits form.
@@ -105,6 +107,8 @@ The form on the page uses a Netlify Function (`create-post`) to append a new pos
 - Anyone with access to the deployed site can submit, so restrict by adding a simple shared secret or auth if needed.
 - To add a secret: set `POST_SHARED_SECRET` env var in Netlify, then modify the function to require it in the payload.
 - Large images will slow load; keep them small, consider future migration to external storage (e.g., Cloudinary) and store URL instead of base64.
+- Public posting uses `ALLOW_PUBLIC_POSTS=true`. Remove or set to false to disable quickly.
+- Sanitization strips `<script>` tags and inline `on*=""` handlers before commit.
 
 ### Add Shared Secret (Optional)
 To enable: add `POST_SHARED_SECRET` in Netlify and include a hidden input `<input type="hidden" name="secret" value="YOURSECRET" />` in the form and validate inside the function.

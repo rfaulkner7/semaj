@@ -10,6 +10,23 @@ exports.handler = async (event) => {
     return { statusCode: 405, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
 
+  const allowPublic = (process.env.ALLOW_PUBLIC_POSTS || '').toLowerCase() === 'true';
+  if(!allowPublic){
+    return { statusCode: 403, body: JSON.stringify({ error: 'Public posting disabled' }) };
+  }
+
+  const sharedSecret = process.env.POST_SHARED_SECRET;
+  if(sharedSecret){
+    try {
+      const payload = JSON.parse(event.body || '{}');
+      if(payload.secret !== sharedSecret){
+        return { statusCode: 401, body: JSON.stringify({ error: 'Invalid secret' }) };
+      }
+    } catch(e){
+      return { statusCode:400, body: JSON.stringify({ error: 'Invalid JSON' }) };
+    }
+  }
+
   const token = process.env.GITHUB_TOKEN;
   const repo = process.env.GITHUB_REPO; // owner/repo
   if(!token || !repo){
@@ -28,14 +45,17 @@ exports.handler = async (event) => {
     }
   }
 
+  // Basic sanitization
+  const sanitize = (s) => s.replace(/<script[^>]*>[\s\S]*?<\/script>/gi,'').replace(/on\w+="[^"]*"/gi,'');
+
   const newPost = {
-    title: String(body.title).trim().slice(0,120),
+    title: sanitize(String(body.title).trim().slice(0,120)),
     date: body.date || new Date().toISOString(),
-    author: String(body.author).trim().slice(0,60),
-    tag: (body.tag || 'general').trim().slice(0,30),
-    summary: String(body.summary).trim().slice(0,300),
-    body: body.body ? String(body.body).trim().slice(0,5000) : undefined,
-    image: body.image && /^data:image\//.test(body.image) ? body.image : undefined
+    author: sanitize(String(body.author).trim().slice(0,60)),
+    tag: sanitize((body.tag || 'general').trim().slice(0,30)),
+    summary: sanitize(String(body.summary).trim().slice(0,300)),
+    body: body.body ? sanitize(String(body.body).trim().slice(0,5000)) : undefined,
+    image: body.image && /^data:image\//.test(body.image) ? body.image.slice(0, 750000) : undefined // cap size ~750KB
   };
 
   try {
