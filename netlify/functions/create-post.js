@@ -27,10 +27,11 @@ exports.handler = async (event) => {
     }
   }
 
-  const token = process.env.GITHUB_TOKEN;
-  const repo = process.env.GITHUB_REPO; // owner/repo
+  const debug = (process.env.DEBUG_POSTS || '').toLowerCase() === 'true';
+  const token = process.env.GITHUB_TOKEN || process.env.github_token || process.env.Github_Token;
+  const repo = process.env.GITHUB_REPO || process.env.github_repo || process.env.Github_Repo; // owner/repo
   if(!token || !repo){
-    return { statusCode: 500, body: JSON.stringify({ error: 'Server misconfigured: missing GITHUB_TOKEN or GITHUB_REPO' }) };
+    return { statusCode: 500, body: JSON.stringify({ error: 'Server misconfigured: missing GITHUB_TOKEN or GITHUB_REPO', diagnostics: debug ? { haveToken: !!token, haveRepo: !!repo } : undefined }) };
   }
 
   let body;
@@ -60,11 +61,35 @@ exports.handler = async (event) => {
 
   try {
     // 1. Get current posts file (to append)
-    const fileRes = await fetch(`https://api.github.com/repos/${repo}/contents/posts/posts.json`, {
-      headers:{ 'Authorization': `token ${token}`, 'Accept':'application/vnd.github.v3+json' }
+    const authHeaderToken = `token ${token}`;
+    const authHeaderBearer = `Bearer ${token}`;
+    let fileRes = await fetch(`https://api.github.com/repos/${repo}/contents/posts/posts.json`, {
+      headers:{ 'Authorization': authHeaderToken, 'Accept':'application/vnd.github.v3+json' }
     });
+    if(fileRes.status === 401){
+      // Retry with Bearer in case the token is a fine-grained PAT that prefers Bearer (GitHub usually accepts both)
+      fileRes = await fetch(`https://api.github.com/repos/${repo}/contents/posts/posts.json`, {
+        headers:{ 'Authorization': authHeaderBearer, 'Accept':'application/vnd.github.v3+json' }
+      });
+    }
     if(!fileRes.ok){
       const txt = await fileRes.text();
+      if(fileRes.status === 401){
+        const hint = debug ? {
+          message: 'GitHub API returned 401',
+          triedAuthSchemes: ['token','Bearer'],
+          repo,
+          tokenLength: token.length,
+          probableCauses: [
+            'Token revoked or expired',
+            'Token missing repo/content write scope',
+            'Repo name incorrect (should be owner/repo)',
+            'Fine-grained PAT lacks Contents: read/write permission'
+          ],
+          fix: 'Create new PAT with repo (classic) OR fine-grained with Contents read/write; add as GITHUB_TOKEN, then redeploy.'
+        } : undefined;
+        throw new Error('Failed to fetch posts.json (401). ' + txt + (hint ? ' :: ' + JSON.stringify(hint) : ''));
+      }
       throw new Error('Failed to fetch posts.json: ' + txt);
     }
     const fileJson = await fileRes.json();
@@ -79,15 +104,26 @@ exports.handler = async (event) => {
     const b64 = Buffer.from(updated, 'utf8').toString('base64');
 
     // 2. Commit update
-    const commitRes = await fetch(`https://api.github.com/repos/${repo}/contents/posts/posts.json`, {
+    let commitRes = await fetch(`https://api.github.com/repos/${repo}/contents/posts/posts.json`, {
       method:'PUT',
-      headers:{ 'Authorization': `token ${token}`, 'Accept':'application/vnd.github.v3+json' },
+      headers:{ 'Authorization': authHeaderToken, 'Accept':'application/vnd.github.v3+json' },
       body: JSON.stringify({
         message: `Add post: ${newPost.title}`,
         content: b64,
         sha
       })
     });
+    if(commitRes.status === 401){
+      commitRes = await fetch(`https://api.github.com/repos/${repo}/contents/posts/posts.json`, {
+        method:'PUT',
+        headers:{ 'Authorization': authHeaderBearer, 'Accept':'application/vnd.github.v3+json' },
+        body: JSON.stringify({
+          message: `Add post: ${newPost.title}`,
+          content: b64,
+          sha
+        })
+      });
+    }
     if(!commitRes.ok){
       const t = await commitRes.text();
       throw new Error('Commit failed: ' + t);
