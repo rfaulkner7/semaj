@@ -110,6 +110,27 @@ The form on the page uses a Netlify Function (`create-post`) to append a new pos
 - Public posting uses `ALLOW_PUBLIC_POSTS=true`. Remove or set to false to disable quickly.
 - Sanitization strips `<script>` tags and inline `on*=""` handlers before commit.
 
+## Deleting Posts
+Endpoint: `/.netlify/functions/delete-post` (POST)
+
+Payload (preferred by id):
+```json
+{ "id": "<post-id>", "secret": "<optional-shared-secret-if-configured>" }
+```
+Fallback (title + date if older posts lack id):
+```json
+{ "title": "Echoed Tale in the Alleys", "date": "2025-11-02T00:10:00Z", "secret": "<optional>" }
+```
+If `POST_SHARED_SECRET` is set, it must match; otherwise deletion requires `ALLOW_PUBLIC_POSTS=true`.
+
+The UI now adds a Delete button on each post. Posts added after enabling IDs include a unique `id` property.
+
+## Tag Coloring
+Non-Flynn posts derive a deterministic color from the tag string. This is done client-side: each post element gets a CSS custom property `--tag-color` influencing the tag badge background.
+
+## Flynn Highlighting
+Posts where `author` is `Flynn` receive special gold styling and are not recolored by tag.
+
 ### Add Shared Secret (Optional)
 To enable: add `POST_SHARED_SECRET` in Netlify and include a hidden input `<input type="hidden" name="secret" value="YOURSECRET" />` in the form and validate inside the function.
 

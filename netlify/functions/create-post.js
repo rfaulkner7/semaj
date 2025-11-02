@@ -50,6 +50,7 @@ exports.handler = async (event) => {
   const sanitize = (s) => s.replace(/<script[^>]*>[\s\S]*?<\/script>/gi,'').replace(/on\w+="[^"]*"/gi,'');
 
   const newPost = {
+    id: Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,8),
     title: sanitize(String(body.title).trim().slice(0,120)),
     date: body.date || new Date().toISOString(),
     author: sanitize(String(body.author).trim().slice(0,60)),
