@@ -32,13 +32,44 @@
     </section>
     <section id="add">
       <h2 class="section-title">How to Add an Entry</h2>
-      <p>Posts are stored in <code>posts/posts.json</code>. Each entry is an object with keys: <code>title</code>, <code>date</code> (ISO), <code>author</code>, <code>tag</code>, <code>summary</code>, and optional <code>body</code> (HTML allowed, keep it minimal). See the README for details and an example.</p>
+      <form id="postForm" autocomplete="off">
+        <div class="form-row">
+          <label for="title">Title</label>
+          <input id="title" name="title" required maxlength="120" />
+        </div>
+        <div class="form-row">
+          <label for="author">Author</label>
+          <input id="author" name="author" required maxlength="60" />
+        </div>
+        <div class="form-row">
+          <label for="tag">Tag</label>
+          <input id="tag" name="tag" placeholder="sighting" maxlength="30" />
+        </div>
+        <div class="form-row">
+          <label for="summary">Summary</label>
+          <textarea id="summary" name="summary" required maxlength="250"></textarea>
+        </div>
+        <div class="form-row">
+          <label for="body">Body (HTML allowed)</label>
+          <textarea id="body" name="body" rows="6" maxlength="5000"></textarea>
+        </div>
+        <div class="form-row">
+          <label for="image">Image (optional)</label>
+          <input id="image" name="image" type="file" accept="image/*" />
+        </div>
+        <div class="form-row">
+          <button type="submit">Post Transmission</button>
+        </div>
+        <div id="postStatus" class="status" aria-live="polite"></div>
+      </form>
+      <p class="form-hint">Submitting will create a new post entry via a Netlify Function. Images are embedded (base64). Keep them small (&lt; 500KB) for performance.</p>
     </section>
   </main>
   <footer>
     <p>&copy; <span id="year"></span> Semaj Archive. Unauthorized replication triggers ICE countermeasures.</p>
   </footer>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/post.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
