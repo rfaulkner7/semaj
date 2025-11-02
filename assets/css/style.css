@@ -69,6 +69,10 @@ button[type=submit] { background: var(--gradient); color:#06070d; border:none; p
 button[type=submit]:hover { filter:brightness(1.15); }
 .status { margin-top:0.5rem; font-size:0.7rem; font-family: var(--mono); opacity:0.8; }
 .form-hint { font-size:0.65rem; opacity:0.6; margin-top:0.6rem; }
+.actions { margin-top:1.2rem; margin-bottom:0.6rem; }
+#toggleFormBtn { background: var(--gradient); color:#06070d; border:none; padding:0.55rem 0.9rem; font-size:0.75rem; letter-spacing:0.08rem; border-radius: var(--radius); cursor:pointer; box-shadow:0 0 10px rgba(255,45,247,0.4); }
+#toggleFormBtn:hover { filter:brightness(1.15); }
+form.hidden { display:none; }
 
 /* Images */
 .image-wrap { margin:0.4rem 0 0.6rem; }

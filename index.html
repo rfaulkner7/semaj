@@ -25,14 +25,10 @@
     <section id="latest">
       <h2 class="section-title">Latest Signals</h2>
       <div id="posts" aria-live="polite"></div>
-    </section>
-    <section id="about">
-      <h2 class="section-title">About Semaj</h2>
-      <p>Rumors speak of a figure navigating the neon haze, disrupting corrupted nodes and leaving only glyph-coded tags behind. Whether vigilante or villain depends on whose megacorp ledger you read. This site will gather events as they unfold.</p>
-    </section>
-    <section id="add">
-      <h2 class="section-title">How to Add an Entry</h2>
-      <form id="postForm" autocomplete="off">
+      <div class="actions">
+        <button id="toggleFormBtn" type="button">Add Transmission</button>
+      </div>
+      <form id="postForm" class="hidden" autocomplete="off">
         <div class="form-row">
           <label for="title">Title</label>
           <input id="title" name="title" required maxlength="120" />
@@ -62,7 +58,10 @@
         </div>
         <div id="postStatus" class="status" aria-live="polite"></div>
       </form>
-      <p class="form-hint">Submitting will create a new post entry via a Netlify Function. Images are embedded (base64). Keep them small (&lt; 500KB) for performance.</p>
+    </section>
+    <section id="about">
+      <h2 class="section-title">About Semaj</h2>
+      <p>Rumors speak of a figure navigating the neon haze, disrupting corrupted nodes and leaving only glyph-coded tags behind. Whether vigilante or villain depends on whose megacorp ledger you read. This site will gather events as they unfold.</p>
     </section>
   </main>
   <footer>

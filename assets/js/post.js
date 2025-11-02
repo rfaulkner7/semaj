@@ -3,6 +3,17 @@
   const form = document.getElementById('postForm');
   if(!form) return;
   const statusEl = document.getElementById('postStatus');
+  const toggleBtn = document.getElementById('toggleFormBtn');
+
+  if(toggleBtn){
+    toggleBtn.addEventListener('click', () => {
+      const hidden = form.classList.toggle('hidden');
+      toggleBtn.textContent = hidden ? 'Add Transmission' : 'Hide Form';
+      if(!hidden){
+        form.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
